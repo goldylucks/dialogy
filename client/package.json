@@ -1,0 +1,97 @@
+{
+  "proxy": "http://localhost:3000",
+  "scripts": {
+    "copy-cert": "cp -f ./cert/server.pem ./node_modules/webpack-dev-server/ssl || :",
+    "prestart": "yarn copy-cert",
+    "start": "REACT_APP_ENV=development HTTPS=true PORT=3001 react-app-rewired start",
+    "prebuild": "rm -rf build",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "test:once": "react-app-rewired test --watchAll=false",
+    "lint": "eslint src --ext .js,jsx",
+    "prettier": "prettier src/**/*.js -c",
+    "ngrok": "zsh -i ./scripts/ngrok.sh",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:verify": "cypress verify",
+    "print-env": "print-env",
+    "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint",
+      "prettier -c"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn lint && yarn prettier"
+    }
+  },
+  "name": "fitcompete",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@hot-loader/react-dom": "^16.8.6",
+    "@material-ui/core": "^4.0.1",
+    "@material-ui/icons": "^4.0.1",
+    "@material-ui/styles": "^4.0.1",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "history": "^4.9.0",
+    "jss": "^9.8.7",
+    "jss-rtl": "^0.2.3",
+    "lodash": "^4.17.11",
+    "mobx": "^5.9.4",
+    "mobx-logger": "^0.7.1",
+    "mobx-react": "^5.4.4",
+    "mobx-remotedev": "^0.3.6",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-error-boundary": "^1.2.5",
+    "react-hot-loader": "^4.8.8",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.1",
+    "uuid": "^3.3.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@welldone-software/why-did-you-render": "^3.2.1",
+    "chalk": "^2.4.2",
+    "customize-cra": "^0.2.13",
+    "cypress": "3.4.1",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-react-app": "^4.0.1",
+    "eslint-plugin-cypress": "^2.2.1",
+    "eslint-plugin-flowtype": "^3.9.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.11.0",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "husky": "^2.3.0",
+    "jest-environment-jsdom-global": "^1.2.0",
+    "lint-staged": "^8.1.7",
+    "prettier": "^1.17.1",
+    "print-env": "^0.1.2",
+    "react-app-rewired": "^2.1.3",
+    "shelljs": "^0.8.3",
+    "webpack-notifier": "^1.7.0"
+  }
+}
