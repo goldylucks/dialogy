@@ -1,5 +1,5 @@
 const config = {
-  baseUrl: '/api/v1',
+  baseUrl: '/api',
   localStorageKeys: ['user'],
   routes: ['/', '/auth', '/scenesList', '/scene/:id'],
   components: [],

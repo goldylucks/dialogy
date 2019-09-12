@@ -44,6 +44,7 @@ class AuthPage extends Component {
             className={classes.textField}
             onChange={this.onNameInputChange}
             value={this.nameInput}
+            fullWidth
             margin="normal"
           />
           <TextField
@@ -52,6 +53,7 @@ class AuthPage extends Component {
             className={classes.textField}
             onChange={this.onPasswordInputChange}
             value={this.passwordInput}
+            fullWidth
             margin="normal"
           />
           <div>

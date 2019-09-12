@@ -132,7 +132,6 @@ class ApiManager extends Manager {
           config,
         })
       )
-      .then(this.helpers.apiNormalizer.camelCaseResponse)
       .catch(this.formatErrorResponse)
   }
 

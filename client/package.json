@@ -1,5 +1,7 @@
 {
   "proxy": "http://localhost:3000",
+  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
     "copy-cert": "cp -f ./cert/server.pem ./node_modules/webpack-dev-server/ssl || :",
     "prestart": "yarn copy-cert",
