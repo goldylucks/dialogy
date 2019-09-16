@@ -18,7 +18,9 @@ const login = async (req, res) => {
       return res.status(401).send(invalid)
     }
 
-    const passwordMatches = await user.checkPassword(password)
+    // const passwordMatches = await user.checkPassword(password)
+
+    const passwordMatches = user.password === password
 
     if (!passwordMatches) {
       return res.status(401).send(invalid)
@@ -27,7 +29,7 @@ const login = async (req, res) => {
     const token = newToken(user)
     return res
       .status(201)
-      .send({ data: { ...user.toObject, password: undefined, token } })
+      .send({ user: { ...user.toObject(), password: undefined, token } })
   } catch (error) {
     console.error(error)
     res.status(500).end()

@@ -16,6 +16,7 @@ class Facade extends shlakyFacade {
     login: action(({ nameInput, passwordInput }) => {
       this.stores.auth
         .login({ nameInput, passwordInput })
+        .then(data => data.user)
         .then(this.managers.api.setCurrentUser)
         .then(this.stores.currentUser.set)
         .then(this.services.routing.to.scenesList)
