@@ -24,11 +24,7 @@ function withShlaky(WrappedComponent, { styles } = {}) {
         facade: props.facade,
         auth: props.facade.auth,
         currentUser: props.facade.currentUser,
-        stats: props.facade.stats,
-        sport: props.facade.sport,
-        get bottomBar() {
-          return props.facade.bottomBar
-        },
+        scenes: props.facade.scenes,
         routing: props.facade.routing,
         routes: props.facade.routes,
         constants: props.facade.constants,

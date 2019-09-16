@@ -31,9 +31,7 @@ class ApiManager extends Manager {
   setupCurrentUser = resource => {
     this.currentUser = this.currentUser || {}
     this.currentUser.refresh = () => {
-      const path = this.helpers.endpoints.currentUser.refresh(
-        this.currentUserId
-      )
+      const path = this.helpers.endpoints.currentUser.me()
       const url = this.buildUrl(path)
       return this.get(url)
     }
@@ -43,7 +41,7 @@ class ApiManager extends Manager {
   setupShorthandResource = resource => {
     this[resource] = this[resource] || {}
     this[resource].add = data => {
-      const path = this.helpers.endpoints[resource].add(this.currentUserId)
+      const path = this.helpers.endpoints[resource].add()
       const url = this.buildUrl(path)
       return this.post(url, data)
     }
@@ -80,7 +78,7 @@ class ApiManager extends Manager {
       this[name][
         `set${field[0].toUpperCase() + field.substr(1)}`
       ] = newValue => {
-        const path = this.helpers.endpoints[name].update(this.currentUserId)
+        const path = this.helpers.endpoints[name].update()
         const url = this.buildUrl(path)
         const data = { [field]: newValue }
         return this.put(url, data)
@@ -141,14 +139,14 @@ class ApiManager extends Manager {
 
   setCurrentUser = user => {
     this.debug('Setting current user', user)
-    this.currentUserId = user.id
+    this.currentUserToken = user.token
     return user
   }
 
   get headers() {
     const headers = new Headers()
-    if (this.currentUserId) {
-      headers.append('User_Id', this.currentUserId)
+    if (this.currentUserToken) {
+      headers.append('Authorization', `Bearer ${this.currentUserToken}`)
     }
     return headers
   }
